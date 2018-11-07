@@ -1,0 +1,76 @@
+#username
+#password
+
+#imageverifycode
+#imgVcode
+
+browser.find_link_by_partial_href('datadetails.html') 
+browser.find_element_by_id("kw").send_keys("python")
+browser.find_element_by_id("su").submit()
+browser.find_element_by_name("wd").clear()    
+browser.find_element_by_css_selector(".bg.s_btn").submit()  
+browser.find_element_by_xpath(".//*[@id='kw']").send_keys("xpath test") 
+
+print self.browser.title
+
+dir查看对象的属性和方法
+	列表的前一部分为魔法方法，最后才是我们关注的属性和方法
+ 'action_chains', 'check', 'checked', 'clear', 'click', 'double_click', 'drag_and_drop', 
+ 'fill', 'find_by_css', 'find_by_id', 'find_by_name', 'find_by_tag',
+ 'find_by_text', 'find_by_value', 'find_by_xpath', 'has_class', 'html', 
+ 'mouse_out', 'mouse_over', 'outer_html', 'parent', 'right_click', 
+ 'screenshot', 'screenshot_as_png', 'select', 
+ 'select_by_text', 'selected', 'tag_name', 
+ 'text', 'type', 'uncheck', 'value', 'visible']
+
+ browser对象方法及属性  (from splinter import Browser)
+ 'attach_file', 'back', 'check', 'choose', 'click_link_by_href', 'click_link_by_id',
+ 'click_link_by_partial_href', 'click_link_by_partial_text', 'click_link_by_text', 
+ 'cookies', 'driver', 'driver_name', 'element_class', 'evaluate_script', 'execute_script', 
+ 'fill', 'fill_form', 'find_by', 'find_by_css', 'find_by_id', 'find_by_name', 
+ 'find_by_tag', 'find_by_text', 'find_by_value', 'find_by_xpath', 'find_link_by_href', 
+ 'find_link_by_partial_href', 'find_link_by_partial_text', 'find_link_by_text', 'find_option_by_text', 
+ 'find_option_by_value', 'forward', 'full_screen', 'get_alert', 'get_iframe', 'html', 
+ 'is_element_not_present', 'is_element_not_present_by_css', 'is_element_not_present_by_id', 
+ 'is_element_not_present_by_name', 'is_element_not_present_by_tag', 
+ 'is_element_not_present_by_text', 'is_element_not_present_by_value', 'is_element_not_present_by_xpath', 
+ 'is_element_not_visible', 'is_element_not_visible_by_css', 'is_element_not_visible_by_xpath', 'is_element_present',
+ 'is_element_present_by_css', 'is_element_present_by_id', 'is_element_present_by_name', 
+ 'is_element_present_by_tag', 'is_element_present_by_text', 'is_element_present_by_value', 
+ 'is_element_present_by_xpath', 'is_element_visible', 'is_element_visible_by_css', 
+ 'is_element_visible_by_xpath', 'is_text_not_present', 'is_text_present', 'ori_window_size',
+ 'quit', 'recover_screen', 'reload', 'screenshot', 'select', 'select_by_text', 
+ 'status_code', 'title', 'type', 'uncheck', 'url', 'visit', 'wait_time', 'windows']
+ 
+ self只有在类的方法中才会有，独立的函数或方法是不必带有self的。self在定义类的方法时是必须有的，虽然在调用时不必传入相应的参数。
+webdriver对象方法及属性  (from selenium import webdriver )
+ '_file_detector', '_is_remote', '_mobile', '_switch_to', '_unwrap_value', '_web_element_cls', '_wrap_value', 
+ 'add_cookie', 'application_cache', 'back', 'binary', 'capabilities', 'close', 'command_executor', 'context',
+ 'create_web_element', 'current_url', 'current_window_handle', 'delete_all_cookies', 'delete_cookie', 'desired_capabilities',
+ 'error_handler', 'execute', 'execute_async_script', 'execute_script', 'file_detector', 'file_detector_context',
+ 'find_element', 'find_element_by_class_name', 'find_element_by_css_selector', 'find_element_by_id', 
+ 'find_element_by_link_text', 'find_element_by_name', 'find_element_by_partial_link_text', 'find_element_by_tag_name',
+ 'find_element_by_xpath', 'find_elements', 'find_elements_by_class_name', 'find_elements_by_css_selector', 
+ 'find_elements_by_id', 'find_elements_by_link_text', 'find_elements_by_name', 'find_elements_by_partial_link_text', 
+ 'find_elements_by_tag_name', 'find_elements_by_xpath', 'firefox_profile', 'forward', 'fullscreen_window', 'get', 
+ 'get_cookie', 'get_cookies', 'get_log', 'get_screenshot_as_base64', 'get_screenshot_as_file', 'get_screenshot_as_png', 
+ 'get_window_position', 'get_window_rect', 'get_window_size', 'implicitly_wait', 'install_addon', 'log_types', 'maximize_window', 
+ 'minimize_window', 'mobile', 'name', 'orientation', 'page_source', 'profile', 'quit', 'refresh', 'save_screenshot', 
+ 'service', 'session_id', 'set_context', 'set_page_load_timeout', 'set_script_timeout', 'set_window_position', 
+ 'set_window_rect', 'set_window_size', 'start_client', 'start_session', 'stop_client', 'switch_to', 'switch_to_active_element', 
+ 'switch_to_alert', 'switch_to_default_content', 'switch_to_frame', 'switch_to_window', 
+ 'title', 'uninstall_addon', 'w3c', 'window_handles']
+ 
+ 集合一中方法
+ 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+集合二中方法
+ 'append', 'clear', 'copy', 'count', 'driver', 'extend', 'find_by', 'first', 'index', 'insert', 'is_empty', 'last', 'pop', 'query', 'remove', 'reverse', 'sort'
+
+ browser选择对象的属性和方法
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__',
+'__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__',
+'__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_element', '_get_value', '_set_value', 'action_chains', 'check',
+ 'checked', 'clear', 'click', 'double_click', 'drag_and_drop', 'fill', 'find_by_css', 'find_by_id', 'find_by_name', 'find_by_tag', 'find_by_text',
+  'find_by_value', 'find_by_xpath', 'has_class', 'html', 'mouse_out', 'mouse_over', 'outer_html', 'parent', 'right_click', 'screenshot', 'screenshot_as_png',
+   'select', 'select_by_text', 'selected', 'tag_name', 'text', 'type', 'uncheck', 'value', 'visible']
+# html 属性  obj.html
