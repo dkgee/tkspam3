@@ -1,0 +1,6 @@
+pytesseract
+numpy
+matplotlib
+opencv-python
+requests
+numba
