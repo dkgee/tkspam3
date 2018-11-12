@@ -41,6 +41,11 @@ dir查看对象的属性和方法
  'is_element_visible_by_xpath', 'is_text_not_present', 'is_text_present', 'ori_window_size',
  'quit', 'recover_screen', 'reload', 'screenshot', 'select', 'select_by_text', 
  'status_code', 'title', 'type', 'uncheck', 'url', 'visit', 'wait_time', 'windows']
+
+ CookieManager
+ ['__class__', '__contains__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__',
+ '__getitem__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__',
+ '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'add', 'all', 'delete', 'driver']
  
  self只有在类的方法中才会有，独立的函数或方法是不必带有self的。self在定义类的方法时是必须有的，虽然在调用时不必传入相应的参数。
 webdriver对象方法及属性  (from selenium import webdriver )

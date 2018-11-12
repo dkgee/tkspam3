@@ -117,7 +117,7 @@ def convert_imgs_to_feature_file(label, svm_feature_file, img_folder):
         svm_feature_file.write(line)
         svm_feature_file.write('\n')
 
-# todo 在预测时有用， 后面会移走，不放在这里
+# 将识别的特征转换为向量
 def convert_feature_to_vector(feature_list):
     """
     :param feature_list:
@@ -167,6 +167,11 @@ if __name__ == '__main__':
     # line = convert_values_to_str(6, pixel_cnt_list)
     # print(line)
 
+    # img_path='./cut_pic/2-z2.png'
+    # img = Image.open(img_path)
+    #img.show()
+    # img.save('./cut_pic/tt.gif','GIF')
+
     #dig = 6
     #img_folder='./cut_pic'
     #feature_file='./train_pix_feature_tt.txt'
@@ -174,12 +179,12 @@ if __name__ == '__main__':
     #convert_imgs_to_feature_file(dig, test_file, img_folder)
 
 
-    # 生成训练初始模型
-    #cut_pic_folder = '../data/cut_pic/'
-    #train_file_name='./train_data/train_pix_feature_xy.txt'
-    #get_svm_train_txt(cut_pic_folder, train_file_name)
+    # 使用样本模型，生成训练初始模型
+    # cut_pic_folder = '../data/cut_pic/'
+    # train_file_name='./train_data/train_pix_feature_xy.txt'
+    # get_svm_train_txt(cut_pic_folder, train_file_name)
 
-    # 生成测试模型
+    # 使用测试样本，生成测试模型
     label = 241
     test_cut_pic_folder='./cut_pic'
     test_feature_file='./test_data/last_test_pix_xy_241.txt'

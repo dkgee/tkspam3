@@ -251,6 +251,7 @@ def svm_predict(y, x, m, options=""):
 		info("Mean squared error = %g (regression)" % MSE)
 		info("Squared correlation coefficient = %g (regression)" % SCC)
 	else:
-		info("Accuracy = %g%% (%d/%d) (classification)" % (ACC, int(round(nr_instance*ACC/100)), nr_instance))
+		pass
+		#info("Accuracy = %g%% (%d/%d) (classification)" % (ACC, int(round(nr_instance*ACC/100)), nr_instance))
 
 	return pred_labels, (ACC, MSE, SCC), pred_values

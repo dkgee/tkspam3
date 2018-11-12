@@ -190,11 +190,20 @@ def cut_imgs_and_save(img, img_name, cut_pic_save_folder):
     :return:
     """
     child_img_list = []
+
+    #geo登录验证码
     for i in range(4):
-        x = 18 + i * 16  # 见原理图
-        y = 0
-        child_img = img.crop((x, y, x + 16, y + 42))
-        child_img_list.append(child_img)
+       x = 18 + i * 16  # 见原理图
+       y = 0
+       child_img = img.crop((x, y, x + 16, y + 42))
+       child_img_list.append(child_img)
+
+    # 开源中国注册登录验证码
+    # for i in range(4):
+    #     x = 4 + i * (19 + 10)  # 见原理图
+    #     y = 0
+    #     child_img = img.crop((x, y, x + 19, y + 40))
+    #     child_img_list.append(child_img)
 
     i = 0
     for child_img in child_img_list:
@@ -202,6 +211,26 @@ def cut_imgs_and_save(img, img_name, cut_pic_save_folder):
         child_img.save(join(cut_pic_save_folder, cut_img_file_name))
         i += 1
 
+def gif_split_to_img():
+    """
+      Split gif to image
+    """
+    gifFileName = r'D:\vcode2\01.gif'
+    #使用Image模块的open()方法打开gif动态图像时，默认是第一帧
+    im = Image.open(gifFileName)
+    pngDir = gifFileName[:-4]
+    print(pngDir)
+    #创建存放每帧图片的文件夹
+    os.mkdir(pngDir)
+    try:
+        while True:
+            #保存当前帧图片
+            current = im.tell()
+            im.save(pngDir+'/'+str(current)+'.png')
+            #获取下一帧图片
+            im.seek(current+1)
+    except EOFError:
+        pass
 
 #####################################################################
 
@@ -211,7 +240,7 @@ def main():
     img_out_dir = './img/img_out'
 
     for file in os.listdir(img_src_dir):
-        if fnmatch(file, '*.jpg'):
+        if fnmatch(file, '*.png'):
             img_name = file
 
             #print('step01: 自适应阈值二值化处理')

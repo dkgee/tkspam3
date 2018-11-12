@@ -52,8 +52,8 @@ if __name__ == "__main__":
     #使用抽取出切图特征文件训练出模型文件
     model_path='./train_data/svm_model_file'
 
-    #train_file_name='./train_data/train_pix_feature_xy.txt'
-    #svm_model_train(train_file_name, model_path)
+    # train_file_name='./train_data/train_pix_feature_xy.txt'
+    # svm_model_train(train_file_name, model_path)
 
     # 使用测试文件测试模型文件
     test_feature_file='./test_data/last_test_pix_xy_241.txt'
