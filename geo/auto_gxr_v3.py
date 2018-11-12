@@ -6,6 +6,8 @@ Created on Thu May 10 14:33:16 2018
 #
 
 import time
+import geo.cfg as cfg
+
 from splinter import Browser
 from selenium import webdriver
 from pil.lib.geo_predict import crack_captcha
@@ -13,24 +15,27 @@ from pil.lib.geo_predict import crack_captcha
 class Geo:
 
 	def __init__(self):
-		self.driver=Browser("firefox")		# firefox浏览器
-		self.try_times = 0					# 尝试登录次数
+		if cfg.is_headless:
+			self.driver=Browser("firefox", headless=True)
+		else:
+			self.driver=Browser("firefox")
+		self.try_times = 0
 
 	def login(self):
 		print("》》》》》》》》》》》》》》首页自动登录.....")
 		br=self.driver
-		br.visit("http://geo.ckcest.cn/")
+		br.visit(cfg.index_url)
 		br.find_by_id('d-login').first.click()
 		self.login_again()
 
 	def login_again(self):
 		br=self.driver
 		# #username
-		br.find_by_id('username').first.fill('xxxxx')
+		br.find_by_id('username').first.fill(cfg.username)
 		# #password
-		br.find_by_id('password').first.fill('xxxx')
+		br.find_by_id('password').first.fill(cfg.password)
 		# #imgVcode
-		vcode = crack_captcha('https://sso.ckcest.cn/portal/captchaCode', br.cookies.all())
+		vcode = crack_captcha(cfg.captcha_url, br.cookies.all())
 		print('识别验证码完成：' + vcode)
 		br.find_by_id('imageverifycode').first.fill(vcode)
 		br.find_by_css('input.login_button').first.click()
@@ -52,7 +57,7 @@ class Geo:
 	def remoteImage(self):
 		print("》》》》》》》》》》》》》》开始遥感影像下载")
 		br=self.driver
-		br.visit('http://geo.ckcest.cn/scientific/InternationalData/list.html')
+		br.visit(cfg.international_url)
 		time.sleep(5)
 		linkspage = br.find_link_by_partial_href('remotedetail.html')
 		pictureurls=[]
@@ -76,13 +81,12 @@ class Geo:
 			for j in range(0,len(within_elements)):
 				within_elements[j].click()
 				time.sleep(5)
-		browser.windows[0].close()
 		print("》》》》》》》》》》》》》》遥感影像文件下载完成.")
 
 	def book(self):
 		print("》》》》》》》》》》》》》》开始查看图书专著")
 		driver=webdriver.Firefox()
-		driver.get('http://geo.ckcest.cn/scientific/literature/books.html')
+		driver.get(cfg.literature_url)
 		time.sleep(3)
 		papers=driver.find_elements_by_xpath("//*[@href]")
 		paperurls=[]
@@ -92,22 +96,24 @@ class Geo:
 				paperurls.append(link)
 		driver.quit()
 		browser=self.driver
-		browser.visit('http://geo.ckcest.cn/scientific/literature/books.html')
+		browser.visit(cfg.literature_url)
 		time.sleep(3)
 		for i in range(0,len(paperurls)):
 			browser.visit(paperurls[i])
 			pp=browser.find_by_id('keyFullPaper')
 			if len(pp) > 0:
 				pp.first.click()
-				time.sleep(5)
-			window = browser.windows[1]
-			window.close()
+				time.sleep(6)
+				#print(len(browser.windows))
+				if len(browser.windows) >= 2:
+					window = browser.windows[1]
+					window.close()
 		print("》》》》》》》》》》》》》》图书专著查看完成")
 
 	def surveyreport(self):
 		print("》》》》》》》》》》》》》》开始查看考察报告")
 		browser=self.driver
-		browser.visit('http://geo.ckcest.cn/scientific/literature/surveyreport/index.html')
+		browser.visit(cfg.surveyreport_url)
 		#然后跳转到一个页码
 		time.sleep(3)
 		papers = browser.find_link_by_partial_href('datadetails.html')
@@ -124,24 +130,25 @@ class Geo:
 			pp=browser.find_by_id('keyFullPaper')
 			if len(pp) > 0:
 				pp.first.click()
-				time.sleep(5)
-			window = browser.windows[1]
-			window.close()
+				time.sleep(6)
+				#print(len(browser.windows))
+				if len(browser.windows) >= 2:
+					window = browser.windows[1]
+					window.close()
 		print("》》》》》》》》》》》》》》考察报告查看完成")
 
 	def close(self):
-		print("》》》》》》》》》》》》》》关闭浏览器")
-		self.driver.windows[0].close()
+		print("本次任务结束,关闭浏览器")
+		self.driver.quit()
 
-###########################################################
-geo=Geo()
-#用户登录
-geo.login()
-#遥感影像
-# geo.remoteImage()
-# #图书专著
-geo.book()
-# #考察报告
-# geo.surveyreport()
-# #关闭浏览器
-# geo.close()
+
+if __name__ == '__main__':
+	geo=Geo()
+	geo.login()
+	if cfg.international_status:
+		geo.remoteImage()
+	if cfg.literature_status:
+		geo.book()
+	if cfg.surveyreport_status:
+		geo.surveyreport()
+	geo.close()

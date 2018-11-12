@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from PIL import Image
 import numpy as np
 import requests
 import pytesseract
 import os
-import io
 import cv2
 
 import lib.img_tools as imgtool

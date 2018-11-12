@@ -3,8 +3,8 @@ SVM示例:
 
 - http://www.cnblogs.com/Finley/p/5329417.html
 """
-from svm_lib.svm import svm_problem, svm_parameter
-from svm_lib.svmutil import *
+from pil.lib.svm_lib.svm import svm_problem, svm_parameter
+from pil.lib.svm_lib.svmutil import *
 
 
 def svm_model_train(train_file_name, model_path):
