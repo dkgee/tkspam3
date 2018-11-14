@@ -9,7 +9,6 @@ import time
 import geo.cfg as cfg
 
 from splinter import Browser
-from selenium import webdriver
 from pil.lib.geo_predict import crack_captcha
 
 class Geo:
@@ -85,56 +84,70 @@ class Geo:
 
 	def book(self):
 		print("》》》》》》》》》》》》》》开始查看图书专著")
-		driver=webdriver.Firefox()
-		driver.get(cfg.literature_url)
-		time.sleep(3)
-		papers=driver.find_elements_by_xpath("//*[@href]")
-		paperurls=[]
-		for paper in papers:
-			link=paper.get_attribute('href')
-			if 'books_bs.html' in link:
-				paperurls.append(link)
-		driver.quit()
 		browser=self.driver
 		browser.visit(cfg.literature_url)
 		time.sleep(3)
-		for i in range(0,len(paperurls)):
-			browser.visit(paperurls[i])
-			pp=browser.find_by_id('keyFullPaper')
-			if len(pp) > 0:
-				pp.first.click()
-				time.sleep(6)
-				#print(len(browser.windows))
-				if len(browser.windows) >= 2:
-					window = browser.windows[1]
-					window.close()
+		paperurls = []
+		paperurl_first =  browser.find_by_css('#DoiAbstract > a')
+		first_size = len(paperurl_first)
+		if first_size == 0:
+			print("获取第一页链接失败，可能页面超时，暂停2s等待")
+			time.sleep(2)
+			paperurl_first =  browser.find_by_css('#DoiAbstract > a')
+		first_size = len(paperurl_first)
+		if first_size > 0:
+			print("成功获取第一页，%d，条数据，开始获取第二页"%first_size)
+			for tag_a in paperurl_first:
+				paperurls.append(tag_a['href'])
+			browser.find_by_text('下一页').first.click()
+			time.sleep(2)
+			paperurl_second =  browser.find_by_css('#DoiAbstract > a')
+			if len(paperurl_second) > 0:
+				print('成功获取第二页图书专著')
+				for tag_b in paperurl_second:
+					paperurls.append(tag_b['href'])
+		print('本次任务共获取%d个图书专著链接，准备查看'%len(paperurls))
+		if len(paperurls) > 0:
+			for href in paperurls:
+				browser.visit(href)
+				pp = browser.find_by_id('keyFullPaper')
+				if len(pp) > 0:
+					pp.first.click()
+					time.sleep(6)
+					if len(browser.windows) >= 2:
+						window = browser.windows[1]
+						window.close()
 		print("》》》》》》》》》》》》》》图书专著查看完成")
 
 	def surveyreport(self):
 		print("》》》》》》》》》》》》》》开始查看考察报告")
 		browser=self.driver
 		browser.visit(cfg.surveyreport_url)
-		#然后跳转到一个页码
 		time.sleep(3)
-		papers = browser.find_link_by_partial_href('datadetails.html')
+		papers_first = browser.find_link_by_partial_href('datadetails.html')
 		paperurls=[]
-		for j in range(0,len(papers)):
-			papers[j].click()
-			time.sleep(3)
-			window = browser.windows[1]
-			if window.url.startswith('http://'):
-				paperurls.append(window.url)
-			window.close()
-		for i in range(1,len(paperurls)):
-			browser.visit(paperurls[i])
-			pp=browser.find_by_id('keyFullPaper')
-			if len(pp) > 0:
-				pp.first.click()
-				time.sleep(6)
-				#print(len(browser.windows))
-				if len(browser.windows) >= 2:
-					window = browser.windows[1]
-					window.close()
+		if len(papers_first) > 0:
+			print('第一页获取%d个考察报告,'%len(papers_first))
+			for j in papers_first:
+				paperurls.append(j['href'])
+			browser.find_by_text('下一页').first.click()
+			time.sleep(2)
+			papers_second = browser.find_link_by_partial_href('datadetails.html')
+			if len(papers_second) > 0:
+				print('第二页获取%d个考察报告,'%len(papers_second))
+				for k in papers_second:
+					paperurls.append(k['href'])
+		print('本次任务共获取%d个考察报告链接，准备查看'%len(paperurls))
+		if len(paperurls) > 0:
+			for href in paperurls:
+				browser.visit(href)
+				pp = browser.find_by_id('keyFullPaper')
+				if len(pp) > 0:
+					pp.first.click()
+					time.sleep(6)
+					if len(browser.windows) >= 2:
+						window = browser.windows[1]
+						window.close()
 		print("》》》》》》》》》》》》》》考察报告查看完成")
 
 	def close(self):
