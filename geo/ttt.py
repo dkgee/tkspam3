@@ -49,4 +49,12 @@ def testBrowser(url):
 
 
 # testBrowser('https://passport.csdn.net/account/login')
-testBrowser('https://www.baidu.com/')
+# testBrowser('https://www.baidu.com/')
+
+pp = ['11','22']
+pp2 = ['33','44']
+tmp = [val for val in pp if not val in pp2]
+tt = set(pp).union(set(pp2))
+print(tt)
+for x in tt:
+    print(x)
