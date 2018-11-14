@@ -6,6 +6,9 @@ Created on Thu May 10 14:33:16 2018
 #
 
 import time
+
+import sys
+sys.path.append(r'../../tkspam3')
 import geo.cfg as cfg
 
 from splinter import Browser
