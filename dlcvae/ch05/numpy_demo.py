@@ -174,13 +174,13 @@ a = np.arange(24).reshape((2, 3, 4))        # 此为嵌套矩阵，二维矩阵
 # print(S)
 # print(np.dot(U, np.dot(S, V)))
 
-random.seed(42)
-random.random(1, 3)
-random.random()
-random.random((3, 3))
-# random.sample((3, 3))
-# random.random_sample((3,3))
-random.ranf((3,3))
-5*random.random(10) + 1
-random.uniform(1, 6, 10)
-print(random.randint(1, 6, 10))
+# random.seed(42)
+# random.random(1, 3)
+# random.random()
+# random.random((3, 3))
+# # random.sample((3, 3))
+# # random.random_sample((3,3))
+# random.ranf((3,3))
+# 5*random.random(10) + 1
+# random.uniform(1, 6, 10)
+# print(random.randint(1, 6, 10))
