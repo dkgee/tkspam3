@@ -144,6 +144,8 @@ dpt_model.compile(optimizer='adam',
                   loss='binary_crossentropy',
                   metrics=['accuracy','binary_crossentropy'])
 
+dpt_model.summary()
+
 dpt_model_history = dpt_model.fit(train_data, train_labels,
                                   epochs=20,
                                   batch_size=512,
