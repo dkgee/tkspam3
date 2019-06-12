@@ -32,11 +32,19 @@ def writebunchobj(path, bunchobj):
     file_obj.close()
 
 ###主程序
-corpus_path = "data/corpus/"    #未分词分类语料库路径【step01: 准备原始分类文件，将分类文件放在该目录下】
-seg_path = "data/seg/"   #分词后的分类语料库路径【step02: 中间数据，存放分词后的分类文件】
-wordbag_path = "data/train_word_bag/"  # 分词语料Bunch对象持久化文件路径【step03: 存放训练模型数据的目录】
-wordbag_file = "train_set.dat"  # 分词语料Bunch对象持久化文件路径【step04: 训练模型数据文件】
-space_path = "data/train_word_bag/tfidfspace.dat"   # 向量空间模型存放位置
+### Train配置
+# corpus_path = "data/corpus/"    #未分词分类语料库路径【step01: 准备原始分类文件，将分类文件放在该目录下】
+# seg_path = "data/seg/"   #分词后的分类语料库路径【step02: 中间数据，存放分词后的分类文件】
+# wordbag_path = "data/train_word_bag/"  # 分词语料Bunch对象持久化文件路径【step03: 存放训练模型数据的目录】
+# wordbag_file = "train_set.dat"  # 分词语料Bunch对象持久化文件路径【step04: 训练模型数据文件】
+# space_path = "data/train_word_bag/tfidfspace.dat"   # 向量空间模型存放位置
+
+####Test配置
+corpus_path = "data/test/"    #未分词分类语料库路径【step01: 准备原始分类文件，将分类文件放在该目录下】
+seg_path = "data/seg_test/"   #分词后的分类语料库路径【step02: 中间数据，存放分词后的分类文件】
+wordbag_path = "data/test_word_bag/"  # 分词语料Bunch对象持久化文件路径【step03: 存放训练模型数据的目录】
+wordbag_file = "test_set.dat"  # 分词语料Bunch对象持久化文件路径【step04: 训练模型数据文件】
+space_path = "data/test_word_bag/testspace.dat"   # 向量空间模型存放位置
 
 #读取停用词
 stopword_path = "data/train_word_bag/hlt_stop_words.txt"
@@ -90,7 +98,7 @@ vectorizer = TfidfVectorizer(stop_words=stpwrdlist, sublinear_tf=True, max_df=0.
 transformer = TfidfTransformer()    #该类会统计每个词语的tf-idf权值
 #文本转为词频矩阵，单独保存字典文件
 tfidfspace.tdm = vectorizer.fit_transform(bunch.contents)
-tfidfspace.vocabulary = vectorizer.vocabulary
+tfidfspace.vocabulary = vectorizer.vocabulary_
 
 ##持久化词袋
 writebunchobj(space_path, tfidfspace)
