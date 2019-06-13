@@ -10,8 +10,8 @@ def loadDataSet():
         ['stop','posting','stupid','worthless','garbage'],
         ['mr','licks','ate','my','steak','how','to','stop','him'],
         ['quit','buying','worthless','dog','food','stupid']]
-    classVec = [0,1,0,1,0,1]    #1 is abusive,0 not 每个文本对应的分类
-    return postingList,classVec
+    classVec = [0, 1, 0, 1, 0, 1]    #1 is abusive,0 not 每个文本对应的分类
+    return postingList, classVec
 
 # 贝叶斯算法类
 class NBayes(object):
@@ -35,7 +35,6 @@ class NBayes(object):
         self.vocabulary = list(tempset)
         self.vocablen = len(self.vocabulary)
         self.calc_wordfreq(train_set)   #计算词频数据集
-        # self.build_tmd()  #按分类累计向量空间的每维值：P(x|yi)
         self.bulid_tmd()     #按分类累计向量空间的每维值：P(x|yi)
 
     # 计算每个分类在数据集中的概率
