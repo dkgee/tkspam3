@@ -10,3 +10,8 @@
 
 向量空间模型：推荐系统、搜索引擎
 
+决策树算法(Classification Regression Tree | CLS: Concept Learning System)：
+            ID3 ---> ID4
+                |--> C4.5
+                |--> CART (主要用于预测)
+
