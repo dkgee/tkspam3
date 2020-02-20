@@ -40,7 +40,8 @@ class Geo:
 		vcode = crack_captcha(cfg.captcha_url, br.cookies.all())
 		print('识别验证码完成：' + vcode)
 		br.find_by_id('imageverifycode').first.fill(vcode)
-		br.find_by_css('input.login_button').first.click()
+		#br.find_by_css('input.login_button').first.click()
+		br.find_by_xpath('//*[@id="fm1"]/div/div[6]').first.click()
 		#msg
 		msgs = br.find_by_id('msg')
 		if len(msgs) > 0:
@@ -50,8 +51,8 @@ class Geo:
 				print('第' + str(self.try_times) + '次登录')
 				self.login_again()
 			else:
-				print(str(self.try_times) + '次登录均失败，请手动登录(20s等待用户输入时间)')
-				time.sleep(20)
+				print(str(self.try_times) + '次登录均失败，请手动登录(30s等待用户输入时间)')
+				time.sleep(30)
 		else:
 			print('自动登录成功')
 
