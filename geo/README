@@ -1,3 +1,11 @@
 
 
 geo:地理信息资源网站相关自动登录及采集任务
+
+安装步骤
+1. 使用Annocoda配置系统环境，使用pyhon3.6
+2. 使用pip安装依赖包
+3. 下载geckodriver至当前目录下(/geo/geckodriver.exe)，下载地址：https://github.com/mozilla/geckodriver/releases
+4. （可选）配置opencv的DLL文件路径，DLL所在路径为/pil/lib/cv2_dll/*.dll，将其复制到系统环境的/Lib/cv2/目录下
+5. 调整cfg.py配置用户登录账号信息，使用auto_gxr_v3.py自动登录系统
+6. 使用win系统批处理命令startup.bat启动
