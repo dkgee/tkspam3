@@ -1,17 +1,3 @@
-取势  明道  优术
-    This program is record some note about py3 in daily study
-
-成就精英人生的原则：
-    1，要承担责任，不要指责他人
-    2，要解决问题，不要传递问题
-    3，要注意细节，不要总想当然
-    4，要关注结果，不要总讲原因
-    5，要主动汇报，不要领导问你
-
-孤帆远影碧空尽，唯见长江天际流
-
-====================================
-
 scikit-learn: 一个机器学习各类算法库，https://scikit-learn.org/
 pickle: 序列化对象或反序列化对象
 cPickle: cPickle是pickle得一个更快得C语言编译版本。cPickle 是 python2 的库，到 python3，改名为 pickle 了
