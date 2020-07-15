@@ -115,8 +115,8 @@ geo.login()
 #遥感影像
 geo.remoteImage()
 #图书专著
-geo.book()
+#geo.book()
 #考察报告
-geo.surveyreport()
+#geo.surveyreport()
 #关闭浏览器
 geo.close()
